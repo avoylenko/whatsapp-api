@@ -30,28 +30,6 @@ const startSession = async (req, res) => {
 }
 
 /**
- * Status of the session with the given session ID.
- *
- * @function
- * @async
- * @param {Object} req - The HTTP request object.
- * @param {Object} res - The HTTP response object.
- * @param {string} req.params.sessionId - The session ID to start.
- * @returns {Promise<void>}
- * @throws {Error} If there was an error getting status of the session.
- */
-const statusSession = async (req, res) => {
-  try {
-    const sessionId = req.params.sessionId
-    const sessionData = await validateSession(sessionId)
-    res.json(sessionData)
-  } catch (error) {
-    console.log('statusSession ERROR', error)
-    sendErrorResponse(res, 500, error)
-  }
-}
-
-/**
  * Terminates the session with the given session ID.
  *
  * @function
@@ -113,7 +91,6 @@ const terminateAllSessions = async (req, res) => {
 
 module.exports = {
   startSession,
-  statusSession,
   terminateSession,
   terminateInactiveSessions,
   terminateAllSessions
